@@ -21,6 +21,20 @@ void printList2(node *first) {
     printList2(first -> nextNode);
 }
 
+void defineTypeList(node* first) {
+    node* copyFirst = first;
+    while ((first -> nextNode != nullptr) && (first -> nextNode != copyFirst)) {
+        first = first -> nextNode;
+    }
+
+    if (first -> nextNode == nullptr) {
+        cout << "acyclic";
+    }
+    if (first->nextNode == copyFirst) {
+        cout << "cyclick";
+    }
+}
+
 void push_front(node *first, node *elem) {
     elem -> nextNode = first;
 }
@@ -94,8 +108,7 @@ void insert_arr(node *first, string *arr, int size) {
     }
 }
 
-int main()
-{
+int main() {
     //начальный список
     node *cur = new node;
     cur -> name = "Novosibirsk";
@@ -112,6 +125,8 @@ int main()
     printList(cur);
     cout << endl;
     printList2(cur);
+    cout << endl;
+    defineTypeList(cur);
     cout << endl;
     //1
     //node *newElem = new node;
